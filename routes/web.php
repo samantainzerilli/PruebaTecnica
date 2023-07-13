@@ -46,20 +46,10 @@ Route::delete('/users/{user}', function ($user) {
     return 'Delete user: ' . $user;
 })->name('users.destroy');
 
-Route::get('/calendar', function () {
-    return (new EventController)->index();
-})->name('calendar');
 
-Route::post('/events', function () {
-    return (new EventController)->store();
-})->name('events.store');
-
-Route::put('/events/{event}', function ($event) {
-    return (new EventController)->update($event);
-})->name('events.update');
-
-Route::delete('/events/{event}', function ($event) {
-    return (new EventController)->destroy($event);
-})->name('events.destroy');
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
 

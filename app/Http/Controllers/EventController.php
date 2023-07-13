@@ -3,41 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Event;
 
 class EventController extends Controller
 {
     public function index()
     {
         $events = Event::all();
-        return view('calendar', compact('events'));
+
+        return response()->json($events);
     }
 
     public function store(Request $request)
     {
-        $event = new Event;
-        $event->titulo = $request->input('title');
-        $event->fecha_inicio = $request->input('start_date');
-        $event->fecha_fin = $request->input('end_date');
-        $event->save();
+        $event = Event::create($request->all());
 
-        return redirect()->route('calendar');
+        return response()->json($event, 201);
     }
 
     public function update(Request $request, Event $event)
     {
-        $event->titulo = $request->input('title');
-        $event->fecha_inicio = $request->input('start_date');
-        $event->fecha_fin = $request->input('end_date');
-        $event->save();
+        $event->update($request->all());
 
-        return redirect()->route('calendar');
+        return response()->json($event);
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
 
-        return redirect()->route('calendar');
+        return response()->json(null, 204);
     }
 }
