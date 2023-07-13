@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +46,20 @@ Route::delete('/users/{user}', function ($user) {
     return 'Delete user: ' . $user;
 })->name('users.destroy');
 
+Route::get('/calendar', function () {
+    return (new EventController)->index();
+})->name('calendar');
 
+Route::post('/events', function () {
+    return (new EventController)->store();
+})->name('events.store');
+
+Route::put('/events/{event}', function ($event) {
+    return (new EventController)->update($event);
+})->name('events.update');
+
+Route::delete('/events/{event}', function ($event) {
+    return (new EventController)->destroy($event);
+})->name('events.destroy');
 
 

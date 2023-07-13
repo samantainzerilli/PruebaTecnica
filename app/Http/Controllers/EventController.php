@@ -16,9 +16,9 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $event = new Event;
-        $event->title = $request->input('title');
-        $event->start_date = $request->input('start_date');
-        $event->end_date = $request->input('end_date');
+        $event->titulo = $request->input('title');
+        $event->fecha_inicio = $request->input('start_date');
+        $event->fecha_fin = $request->input('end_date');
         $event->save();
 
         return redirect()->route('calendar');
@@ -26,9 +26,9 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        $event->title = $request->input('title');
-        $event->start_date = $request->input('start_date');
-        $event->end_date = $request->input('end_date');
+        $event->titulo = $request->input('title');
+        $event->fecha_inicio = $request->input('start_date');
+        $event->fecha_fin = $request->input('end_date');
         $event->save();
 
         return redirect()->route('calendar');
