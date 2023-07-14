@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 
 
@@ -14,6 +15,23 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/events', function () {
+    return view('events.index');
+})->name('events.index');
+
+Route::post('/events', function () {
+    return view('events.store');
+})->name('events.store');
+
+Route::put('/events/{event}', function () {
+    return view('events.update');
+})->name('events.update');
+
+Route::delete('/events/{event}', function () {
+    return view('events.destroy');
+})->name('events.destroy');
+
 Route::get('/calendario', function () {
     return view('calendar');
 })->name('calendar');
@@ -45,5 +63,9 @@ Route::put('/users/{user}', function ($user) {
 Route::delete('/users/{user}', function ($user) {
     return 'Delete user: ' . $user;
 })->name('users.destroy');
+
+
+
+
 
 
