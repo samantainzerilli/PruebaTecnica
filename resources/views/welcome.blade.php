@@ -138,5 +138,6 @@
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('node_modules/fullcalendar/main.js') }}"></script>
     </body>
 </html>
