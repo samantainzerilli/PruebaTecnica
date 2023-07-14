@@ -24,13 +24,9 @@ Route::post('/events', function () {
     return view('events.store');
 })->name('events.store');
 
-Route::put('/events/{event}', function () {
-    return view('events.update');
-})->name('events.update');
+Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 
-Route::delete('/events/{event}', function () {
-    return view('events.destroy');
-})->name('events.destroy');
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
 Route::get('/calendario', function () {
     return view('calendar');
